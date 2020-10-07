@@ -5,6 +5,7 @@ const Logger = require('../services/logger_service');
 const logger = new Logger('server');
 
 const auth = async (req, res) => {
+	console.log(req.body.email);
 	Usuario.findOne({
 		where: {
 			email: req.body.email,
@@ -35,7 +36,7 @@ const auth = async (req, res) => {
 			});
 		})
 		.catch((err) => {
-			logger.error(error);
+			logger.error(err);
 			res.status(500).send('Internal Server Error ' + err);
 		});
 };

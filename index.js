@@ -1,6 +1,8 @@
 const express = require('express');
 var bodyParser = require('body-parser');
 const routes = require('./src/routes');
+const swaggerJsDoc = require('swagger-jsdoc');
+const swaggerUi = require('swagger-ui-express');
 const cors = require('cors');
 
 require('./src/config/db/db');
@@ -16,6 +18,34 @@ server.use(cors());
 
 server.use(bodyParser.urlencoded({ extended: false }));
 server.use(bodyParser.json());
+
+const swaggerOptions = {
+	swaggerDefinition: {
+		info: {
+			title: 'Run App API',
+			description: 'A Running API Information',
+			servers: ['http://localhost:8080'],
+			tags: [
+				{
+					name: 'geral',
+					description: 'Everything about your runners aplication',
+				},
+				{
+					name: 'corridas',
+					description: 'Everything about your agents',
+				},
+			],
+		},
+	},
+	//['.routes/*.js]
+	apis: ['./src/routes/*.js'],
+};
+
+//Routes
+
+const swaggerDocs = swaggerJsDoc(swaggerOptions);
+server.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+
 server.use(routes);
 
 server.listen(PORT, () => {
