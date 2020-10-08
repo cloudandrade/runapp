@@ -4,6 +4,10 @@ const { STRING, INTEGER } = require('sequelize');
 const Usuario = db.sequelize.define(
 	'usuario',
 	{
+		nome: {
+			type: STRING,
+			required: true,
+		},
 		email: {
 			type: STRING,
 			required: true,

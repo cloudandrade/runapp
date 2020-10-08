@@ -78,19 +78,100 @@ routes.get('/auth/verify', checkAuthorization, async (req, res) => {
 	});
 });
 
+/**
+ * @swagger
+ * /api/users:
+ *  post:
+ *    tags: ["usuarios"]
+ *    description: Use create a user
+ *    parameters: [
+ *      	{
+						"in": "body",
+						"name": "body",
+						"description": "creates a user to use the application",
+						"required": true,
+            "schema": {
+              "properties":{
+								"nome": {"type": "string"},
+				        "email": { "type": "string"},
+								"senha": { "type": "string" },
+								"perfil": {"type": "integer"}
+              }
+            }
+					}
+ *    ]
+ *    responses:
+ *      '200':
+ *        description: A sucessfull response
+ */
 routes.post('/api/users', usuarioC.create);
 
+/**
+ * @swagger
+ * /api/users/{id}:
+ *  get:
+ *    tags: ["usuarios"]
+ *    description: Use to find a detailed user by id
+ *    parameters: [
+					{
+						"name": "id",
+						"in": "path",
+						"description": "ID of the user",
+						"required": true,
+						"type": "integer",
+          },
+        ]
+ *    responses:
+ *      '200':
+ *        description: A sucessfull response
+ */
 routes.get('/api/users/:id', usuarioC.index);
 
+/**
+ * @swagger
+ * /api/desafios/{id}:
+ *  get:
+ *    tags: ["desafios"]
+ *    description: Use to find a desafio by id
+ *    parameters: [
+					{
+						"name": "id",
+						"in": "path",
+						"description": "ID of the desafio",
+						"required": true,
+						"type": "integer",
+          },
+        ]
+ *    responses:
+ *      '200':
+ *        description: A sucessfull response
+ */
 routes.get('/api/desafios/:id', desafioC.index);
 
+/**
+ * @swagger
+ * /api/desafios:
+ *  get:
+ *    tags: ["desafios"]
+ *    description: Use to find desafios by dificult
+ *    parameters: [
+					{
+						"name": "dificuldade",
+						"in": "query",
+						"description": "dificult of the desafio",
+						"type": "string",
+          },
+        ]
+ *    responses:
+ *      '200':
+ *        description: A sucessfull response
+ */
 routes.get('/api/desafios', desafioC.list);
 
 //rotas a serem criadas
 
 /**
- * 	- cadastro e login
- *  - buscar dados usuario
+ *  - cadastrar corrida
  *  - buscar corridas do usuario - ordenado por data
  *  - setar dificuldade do usuario - alterar dificuldade
  * 	- buscar desafios do usuario

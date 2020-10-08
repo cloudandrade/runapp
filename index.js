@@ -32,7 +32,15 @@ const swaggerOptions = {
 				},
 				{
 					name: 'corridas',
+					description: 'Everything about your runnings',
+				},
+				{
+					name: 'usuarios',
 					description: 'Everything about your agents',
+				},
+				{
+					name: 'desafios',
+					description: 'Everything about your challenges',
 				},
 			],
 		},
