@@ -4,10 +4,6 @@ const { STRING, INTEGER, FLOAT, DATE } = require('sequelize');
 const Corridas = db.sequelize.define(
 	'corridas',
 	{
-		usuario_id: {
-			type: INTEGER,
-			required: true,
-		},
 		distancia: {
 			type: FLOAT,
 			required: true,

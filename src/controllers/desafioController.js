@@ -3,31 +3,7 @@ const Logger = require('../services/logger_service');
 const logger = new Logger('server');
 const { sequelize } = require('../config/db/db');
 
-//método responsavel pela criação
-/* exports.create = async (req, res) => {
-	logger.info('Route - Criação de Estaca'); //
-	let newEstaca = req.body; //pegando a requisição que vem da web e instanciando em forma de objeto
-
-	if (!newEstaca.nome) {
-		//verificando se os dados estão incompletos
-		res.status(400).send('O campo nome não pode ficar vazio');
-		// http status 400 - bad request - quando algum campo está com problema
-	}
-
-	try {
-		let payload = await Estaca.create(newEstaca);
-		let response = { sucess: true, payload };
-		return res.send(response);
-	} catch (error) {
-		let payload = 'Falha ao cadastrar estaca';
-		logger.error(payload, error);
-		let response = { sucess: false, payload };
-		res.status(500).send(response);
-		// http status 500 - internal server error - algum erro inesperado ou erro de programaçao
-	}
-}; */
-
-//método resbonsável por buscar um DESAFIO
+//método resbonsável por buscar um DESAFIO por id
 exports.index = async (req, res) => {
 	logger.info('Route - Busca de Desafios');
 	const { id } = req.params;
@@ -49,6 +25,7 @@ exports.index = async (req, res) => {
 		logger.error(payload, error);
 		const response = { sucess: false, payload };
 		res.status(500).send(response);
+		throw new Error(error);
 		// http status 500 - internal server error - algum erro inesperado ou erro de programaçao
 	}
 };

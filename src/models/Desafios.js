@@ -8,10 +8,6 @@ const Desafios = db.sequelize.define(
 			type: INTEGER,
 			required: true,
 		},
-		usuario_id: {
-			type: INTEGER,
-			required: true,
-		},
 		nome: {
 			type: STRING,
 			required: true,
