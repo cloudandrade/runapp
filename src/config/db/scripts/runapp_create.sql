@@ -3,16 +3,16 @@ CREATE SCHEMA `runapp`;
 USE `runapp`;
 
 CREATE TABLE `corridas` (
-  `id` int NOT NULL,
-  `distancia` DECIMAL NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
+  `distancia` DECIMAL(10, 2) NOT NULL,
   `duracao` varchar(255) NOT NULL,
-  `pace` varchar(255) NOT NULL,
+  `pace` DECIMAL(10, 2) NOT NULL,
   `data` DATE NOT NULL,
   PRIMARY KEY (`id`)
 );
 
 CREATE TABLE `desafios` (
-  `id` int NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
   `level_max` int,
   `nome` varchar(255) NOT NULL,
   `descricao` varchar(255) NOT NULL,
@@ -27,7 +27,7 @@ CREATE TABLE `desafios` (
 );
 
 CREATE TABLE `usuario` (
-  `id` int NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
   `perfil_id` int NOT NULL,
   `nome` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
