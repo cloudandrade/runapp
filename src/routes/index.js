@@ -5,12 +5,13 @@ const os = require('os-utils');
 
 const Auth = require('../controllers/authController');
 const { checkAuthorization } = require('../services/auth');
-//const estacaController = require('../controllers/estacaController');
 const usuarioC = require('../controllers/usuarioController');
 const desafioC = require('../controllers/desafioController');
+const corridaC = require('../controllers/corridaController');
 
 const routes = Router();
 
+//================================= SERVER
 /**
  * @swagger
  * /:
@@ -78,6 +79,7 @@ routes.get('/auth/verify', checkAuthorization, async (req, res) => {
 	});
 });
 
+//============================================= USERS
 /**
  * @swagger
  * /api/users:
@@ -127,6 +129,7 @@ routes.post('/api/users', usuarioC.create);
  */
 routes.get('/api/users/:id', usuarioC.index);
 
+//=================================================DESAFIOS
 /**
  * @swagger
  * /api/desafios/{id}:
@@ -167,6 +170,18 @@ routes.get('/api/desafios/:id', desafioC.index);
  *        description: A sucessfull response
  */
 routes.get('/api/desafios', desafioC.list);
+
+//CORRIDAS
+routes.post('/api/corridas', corridaC.create);
+
+routes.get('/api/corridas/:usuarioId', corridaC.list);
+
+//-
+//-
+//-
+//-
+//-
+//-
 
 //rotas a serem criadas
 
